@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import KanbanBoardContainer from './KanbanBoardContainer';
 import * as serviceWorker from './serviceWorker';
 
 let cardsList = [
@@ -39,7 +39,7 @@ let cardsList = [
     }
 ];
 
-ReactDOM.render(<App cards={cardsList} />, document.getElementById('root'));
+ReactDOM.render(<KanbanBoardContainer />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

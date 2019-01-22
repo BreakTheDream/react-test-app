@@ -10,7 +10,8 @@ class List extends Component {
                 title={card.title}
                 description={card.description}
                 tasks={card.tasks}
-                color={card.color} />
+                color={card.color} 
+                taskCallbacks={this.props.taskCallbacks} />
         });
         return (
             <div className="list">
