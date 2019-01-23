@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import App from './App';
+import update from 'react-addons-update';
 import 'whatwg-fetch';
+import 'babel-polyfill';
 
 const API_URL = 'http://kanbanapi.pro-react.com';
 const API_HEADERS = {
@@ -31,11 +33,18 @@ class KanbanBoardContainer extends Component {
 
     }
 
-    deleteTask(cardId, taskId, taskInfo) {
-
+    deleteTask(cardId, taskId, taskIndex) {
+        let cardIndex = this.state.cards.findIndex((card) => card.id === cardId);
+        let nextState = update(this.state.cards, {
+            [cardIndex]: {
+                tasks: {$splice: [[taskIndex,1]]}
+            }
+        });
+        this.setState({cards: nextState});
+        fetch(`${API_URL}/cards/${cardId}/tasks/${taskId}`, {method: 'delete', headers: API_HEADERS});
     }
 
-    toggleTask(cardId, taskId, taskInfo) {
+    toggleTask(cardId, taskId, taskIndex) {
 
     }
 
